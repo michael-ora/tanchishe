@@ -21,4 +21,8 @@
     - [x] 确认蛇身纹理显示正常
 - [/] 优化蛇头视觉效果 [Execution]
     - [x] 重新设计蛇头 SVG，增加吐信子、鳞片纹理、眼睛细节，使其更真实
+- [x] 增加更多动物：鸡和鸭 [Execution]
+    - [x] 设计小鸡 SVG (White/Red)
+    - [x] 设计小鸭 SVG (Yellow/Orange)
+    - [x] 并在 `app.js` 中注册和启用新动物
 

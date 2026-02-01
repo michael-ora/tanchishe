@@ -394,6 +394,29 @@ class SnakeGame {
                 <path d="M 5 22 Q 10 15 15 22" fill="#60a5fa" stroke="#1e40af" stroke-width="1.5"/>
                 <path d="M 32 20 L 38 22 L 32 24 Z" fill="#fbbf24" stroke="#92400e" stroke-width="1"/>
                 <circle cx="28" cy="18" r="2.5" fill="black"/>
+            </svg>`,
+            chicken: `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <!-- 身体 (Body) -->
+                <circle cx="20" cy="22" r="15" fill="#fefce8" stroke="#ca8a04" stroke-width="1.5"/>
+                <!-- 鸡冠 (Comb) -->
+                <path d="M 15 10 Q 18 5 22 10 Q 25 5 25 10" fill="#ef4444" stroke="#b91c1c" stroke-width="1"/>
+                <!-- 嘴巴 (Beak) -->
+                <path d="M 16 22 L 12 24 L 16 26 Z" fill="#facc15" stroke="#a16207" stroke-width="1"/>
+                <!-- 眼睛 (Eyes) -->
+                <circle cx="24" cy="20" r="2.5" fill="black"/>
+                <!-- 翅膀 (Wing) -->
+                <path d="M 22 25 Q 30 28 28 20" stroke="#ca8a04" stroke-width="1.5" fill="none"/>
+            </svg>`,
+            duck: `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+                <!-- 身体 (Body) -->
+                <circle cx="20" cy="22" r="15" fill="#fde047" stroke="#eab308" stroke-width="1.5"/>
+                <!-- 嘴巴 (Bill) -->
+                <path d="M 10 20 Q 5 22 10 24 L 15 22 Z" fill="#f97316" stroke="#c2410c" stroke-width="1"/>
+                <!-- 眼睛 (Eyes) -->
+                <circle cx="20" cy="18" r="2.5" fill="black"/>
+                <circle cx="28" cy="18" r="2.5" fill="black"/>
+                <!-- 翅膀 (Wing) -->
+                <path d="M 25 25 Q 32 28 32 22" stroke="#eab308" stroke-width="1.5" fill="none"/>
             </svg>`
         };
 
@@ -403,7 +426,9 @@ class SnakeGame {
             apple: this.svgToImage(this.assets.apple),
             hamster: this.svgToImage(this.assets.hamster),
             rabbit: this.svgToImage(this.assets.rabbit),
-            bird: this.svgToImage(this.assets.bird)
+            bird: this.svgToImage(this.assets.bird),
+            chicken: this.svgToImage(this.assets.chicken),
+            duck: this.svgToImage(this.assets.duck)
         };
     }
 
@@ -530,7 +555,7 @@ class SnakeGame {
         const maxAttempts = 100;
 
         do {
-            const types = ['apple', 'hamster', 'rabbit', 'bird'];
+            const types = ['apple', 'hamster', 'rabbit', 'bird', 'chicken', 'duck'];
             this.food = {
                 x: Math.floor(Math.random() * this.cols),
                 y: Math.floor(Math.random() * this.rows),
