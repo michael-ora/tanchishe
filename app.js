@@ -338,12 +338,35 @@ class SnakeGame {
         // SVG 资源素材
         this.assets = {
             snakeHead: `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="20" cy="20" r="18" fill="#4ade80" stroke="#166534" stroke-width="2"/>
-                <circle cx="12" cy="15" r="4" fill="white"/>
-                <circle cx="12" cy="15" r="2" fill="black"/>
-                <circle cx="28" cy="15" r="4" fill="white"/>
-                <circle cx="28" cy="15" r="2" fill="black"/>
-                <path d="M 15 28 Q 20 32 25 28" stroke="#166534" stroke-width="2" fill="none" stroke-linecap="round"/>
+                <!-- 吐信子 (Tongue) -->
+                <path d="M 19 2 L 17 -3 M 21 2 L 23 -3" stroke="#ef4444" stroke-width="2" stroke-linecap="round" />
+                <path d="M 20 15 Q 20 5 20 2" stroke="#ef4444" stroke-width="3" stroke-linecap="round" />
+                
+                <!-- 头部轮廓 (Head Shape) - 略呈三角形 -->
+                <path d="M 20 5 
+                         C 5 15, 5 30, 10 35 
+                         Q 20 40, 30 35 
+                         C 35 30, 35 15, 20 5 Z" 
+                      fill="#4ade80" stroke="#166534" stroke-width="1.5"/>
+                
+                <!-- 鳞片纹理 (Scales) -->
+                <path d="M 20 5 L 20 15 M 15 12 L 18 18 M 25 12 L 22 18 M 12 25 L 18 25 M 28 25 L 22 25 M 20 30 L 20 38" 
+                      stroke="rgba(22, 101, 52, 0.3)" stroke-width="1" stroke-linecap="round"/>
+
+                <!-- 眼睛 (Eyes) -->
+                <ellipse cx="14" cy="18" rx="3.5" ry="5" fill="#facc15" stroke="#854d0e" stroke-width="1"/>
+                <ellipse cx="26" cy="18" rx="3.5" ry="5" fill="#facc15" stroke="#854d0e" stroke-width="1"/>
+                
+                <!-- 瞳孔 (Pupils) - 细长竖瞳 -->
+                <ellipse cx="14" cy="18" rx="1" ry="3.5" fill="black"/>
+                <ellipse cx="26" cy="18" rx="1" ry="3.5" fill="black"/>
+
+                <!-- 鼻孔 (Nostrils) -->
+                <circle cx="17" cy="8" r="0.8" fill="#14532d"/>
+                <circle cx="23" cy="8" r="0.8" fill="#14532d"/>
+                
+                <!-- 头部高光 (Highlight) -->
+                <ellipse cx="20" cy="12" rx="6" ry="3" fill="rgba(255,255,255,0.3)"/>
             </svg>`,
             apple: `<svg width="40" height="40" viewBox="0 -5 40 45" xmlns="http://www.w3.org/2000/svg">
                 <path d="M 20 10 Q 35 10 35 25 Q 35 40 20 40 Q 5 40 5 25 Q 5 10 20 10" fill="#ef4444" stroke="#991b1b" stroke-width="1.5"/>
