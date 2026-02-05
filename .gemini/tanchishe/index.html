@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇 - 霓虹街机</title>
+    <meta name="description" content="一款具有霓虹视觉风格的经典贪吃蛇游戏">
+    <!-- 引入 Google Fonts Outfit 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- 动态背景层 - 发光球体 -->
+    <div class="background-layer">
+        <div class="glow-orb glow-orb-cyan"></div>
+        <div class="glow-orb glow-orb-fuchsia"></div>
+    </div>
+
+    <!-- 主容器 - 毛玻璃效果 -->
+    <div class="main-container glass-panel">
+        <!-- 标题区域 -->
+        <header class="header">
+            <h1 class="title gradient-text">贪吃蛇</h1>
+            <p class="subtitle">霓虹街机</p>
+        </header>
+
+        <!-- 登录/注册区域 -->
+        <section id="login-section" class="section login-section">
+            <div class="auth-container">
+                <!-- 选项卡切换 -->
+                <div class="auth-tabs">
+                    <button id="login-tab" class="auth-tab active" data-tab="login">登录</button>
+                    <button id="register-tab" class="auth-tab" data-tab="register">注册</button>
+                </div>
+
+                <!-- 错误/成功提示 -->
+                <div id="auth-message" class="auth-message hidden"></div>
+
+                <!-- 登录表单 -->
+                <div id="login-form" class="auth-form">
+                    <div class="input-group">
+                        <label for="login-username" class="input-label">用户名</label>
+                        <input type="text" id="login-username" class="neon-input" placeholder="输入用户名..." maxlength="20"
+                            autocomplete="username">
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password" class="input-label">密码</label>
+                        <input type="password" id="login-password" class="neon-input" placeholder="输入密码..."
+                            maxlength="32" autocomplete="current-password">
+                    </div>
+                    <button id="login-btn" class="neon-btn">
+                        <span>登录</span>
+                    </button>
+                </div>
+
+                <!-- 注册表单 -->
+                <div id="register-form" class="auth-form hidden">
+                    <div class="input-group">
+                        <label for="register-username" class="input-label">用户名</label>
+                        <input type="text" id="register-username" class="neon-input" placeholder="设置用户名..."
+                            maxlength="20" autocomplete="username">
+                    </div>
+                    <div class="input-group">
+                        <label for="register-password" class="input-label">密码</label>
+                        <input type="password" id="register-password" class="neon-input" placeholder="设置密码..."
+                            maxlength="32" autocomplete="new-password">
+                    </div>
+                    <div class="input-group">
+                        <label for="register-confirm" class="input-label">确认密码</label>
+                        <input type="password" id="register-confirm" class="neon-input" placeholder="再次输入密码..."
+                            maxlength="32" autocomplete="new-password">
+                    </div>
+                    <button id="register-btn" class="neon-btn">
+                        <span>注册</span>
+                    </button>
+                </div>
+
+                <!-- 游客模式分隔线 -->
+                <div class="divider">
+                    <span>或</span>
+                </div>
+                <button id="guest-btn" class="neon-btn guest-btn">
+                    <span>👻 游客模式</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- 游戏区域 -->
+        <section id="game-section" class="section game-section hidden">
+            <!-- 用户信息栏 -->
+            <div class="user-bar">
+                <div class="user-info">
+                    <span class="user-avatar">🎮</span>
+                    <span id="current-username" class="username-display"></span>
+                </div>
+                <button id="logout-btn" class="logout-btn">退出登录</button>
+            </div>
+
+            <!-- 分数显示 -->
+            <div class="score-display">
+                <div class="score-item">
+                    <span class="score-label">当前分数</span>
+                    <span id="current-score" class="score-value">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">最高分数</span>
+                    <span id="high-score" class="score-value highlight">0</span>
+                </div>
+            </div>
+
+            <!-- 游戏画布 -->
+            <div class="canvas-wrapper">
+                <canvas id="game-canvas" width="400" height="400"></canvas>
+                <!-- 游戏覆盖层 - 用于显示开始/结束状态 -->
+                <div id="game-overlay" class="game-overlay">
+                    <div class="overlay-content">
+                        <p id="overlay-message" class="overlay-message">按 开始游戏 按钮开始</p>
+                        <p id="final-score" class="final-score hidden"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 游戏控制按钮 -->
+            <div class="game-controls">
+                <button id="start-btn" class="neon-btn">
+                    <span>开始游戏</span>
+                </button>
+                <button id="pause-btn" class="neon-btn secondary hidden">
+                    <span>暂停</span>
+                </button>
+            </div>
+
+            <!-- 移动端控制按钮 -->
+            <div class="mobile-controls">
+                <button class="control-btn" data-direction="up">↑</button>
+                <div class="control-row">
+                    <button class="control-btn" data-direction="left">←</button>
+                    <button class="control-btn" data-direction="down">↓</button>
+                    <button class="control-btn" data-direction="right">→</button>
+                </div>
+            </div>
+
+            <!-- 历史记录 -->
+            <div class="history-section">
+                <h3 class="history-title">游戏记录</h3>
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="scores">分数历史</button>
+                    <button class="tab-btn" data-tab="logins">登录历史</button>
+                </div>
+                <div id="scores-tab" class="tab-content active">
+                    <ul id="scores-list" class="history-list">
+                        <li class="empty-message">暂无游戏记录</li>
+                    </ul>
+                </div>
+                <div id="logins-tab" class="tab-content">
+                    <ul id="logins-list" class="history-list">
+                        <li class="empty-message">暂无登录记录</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
